@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>Результаты поиска: "<span th:text="${query}"></span>"</h3>
+        <a href="/" class="btn btn-outline-secondary">Главная</a>
+    </div>
+
+    <!-- Животные -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="mb-3">Животные (<span th:text="${pets.size()}"></span>)</h5>
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th>Кличка</th>
+                    <th>Порода</th>
+                    <th>Владелец</th>
+                    <th>Телефон</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pet : ${pets}">
+                    <td th:text="${pet.name}"></td>
+                    <td th:text="${pet.breed?.nazvanie ?: '—'}"></td>
+                    <td th:text="${pet.ownerName}"></td>
+                    <td th:text="${pet.ownerPhone}"></td>
+                </tr>
+                <tr th:if="${pets.empty}">
+                    <td colspan="4" class="text-muted">Ничего не найдено</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Осмотры -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="mb-3">Осмотры (<span th:text="${osmotry.size()}"></span>)</h5>
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th>Животное</th>
+                    <th>Дата</th>
+                    <th>Ветеринар</th>
+                    <th>Диагноз</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="o : ${osmotry}">
+                    <td th:text="${o.pet.name}"></td>
+                    <td th:text="${o.dataOsmotra}"></td>
+                    <td th:text="${o.veterinarniyVrach}"></td>
+                    <td th:text="${o.predvaritelnyDiagnoz}"></td>
+                </tr>
+                <tr th:if="${osmotry.empty}">
+                    <td colspan="4" class="text-muted">Ничего не найдено</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Прививки -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="mb-3">Прививки (<span th:text="${vakciny.size()}"></span>)</h5>
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th>Животное</th>
+                    <th>Вакцина</th>
+                    <th>Тип</th>
+                    <th>Дата</th>
+                    <th>Ветеринар</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="v : ${vakciny}">
+                    <td th:text="${v.pet.name}"></td>
+                    <td th:text="${v.nazvanieVakciny}"></td>
+                    <td th:text="${v.tipVakciny}"></td>
+                    <td th:text="${v.dataPostanovki}"></td>
+                    <td th:text="${v.veterinarniyVrach}"></td>
+                </tr>
+                <tr th:if="${vakciny.empty}">
+                    <td colspan="5" class="text-muted">Ничего не найдено</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
