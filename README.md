@@ -113,19 +113,3 @@ src/main/java/ru/cat/cattery/
 └── controller/   # MVC-контроллеры: CRUD, поиск, отчёт в Excel
 src/main/resources/templates/   # страницы Thymeleaf
 ```
-
-## Запуск
-
-1. Установите JDK 21 и PostgreSQL.
-2. Создайте пустую базу данных:
-   ```sql
-   CREATE DATABASE cattery;
-   ```
-3. Укажите логин и пароль к базе в `src/main/resources/application.properties`.
-4. Запустите приложение:
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-5. Откройте http://localhost:8080.
-
-Таблицы создаются автоматически при первом запуске (`spring.jpa.hibernate.ddl-auto=update`).
